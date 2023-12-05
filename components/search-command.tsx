@@ -46,7 +46,7 @@ export const SearchCommand = ()=>{
 
     return(
         <CommandDialog open={isOpen} onOpenChange={onClose}>
-            <CommandInput placeholder={`Search ${user?.fullName}'s Notion...`}/>
+            <CommandInput placeholder={`Search ${user?.fullName}'s Lotion...`}/>
             <CommandList>
                 <CommandGroup heading="Documents">
                     {documents?.map((document)=>(

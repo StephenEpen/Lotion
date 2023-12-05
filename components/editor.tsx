@@ -5,7 +5,6 @@ import {BlockNoteView, useBlockNote} from "@blocknote/react"
 import "@blocknote/core/style.css"
 import { useTheme } from "next-themes"
 import { useEdgeStore } from "@/lib/edgestore"
-import { ModeToggle } from "./mode-toggle"
 
 interface EditorProps{
     onChange: (value: string)=> void
@@ -20,9 +19,7 @@ const Editor = ({
     const {edgestore} = useEdgeStore()
 
     const handleUpload = async (file: File)=>{
-        const response = await edgestore.publicFiles.upload({
-            file
-        })
+        const response = await edgestore.publicFiles.upload({file})
 
         return response.url
     }

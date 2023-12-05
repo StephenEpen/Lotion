@@ -37,7 +37,7 @@ const DocumentsPage = () => {
                 <Image src="/empty.png" height="300" width="300" alt="empty" className="dark:hidden" />
                 <Image src="/empty-dark.png" height="300" width="300" alt="empty" className="hidden dark:block" />
                 <h2 className="text-lf font-medium">
-                    Welcome to {user?.firstName}&apos;s Lotion
+                    Welcome to {user?.firstName}&apos;s Note
                 </h2>
                 <Button onClick={onCreate}>
                     <PlusCircle className="h-4 w-4 mr-2"/>

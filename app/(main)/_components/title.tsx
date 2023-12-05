@@ -19,7 +19,7 @@ export const Title = ({
     const inputRef = useRef<HTMLInputElement>(null)
 
     const [isEditing, setIsEditing] = useState(false)
-    const [title, setTitle] = useState(initialData.title || "Untitled" || "untitled")
+    const [title, setTitle] = useState(initialData.title || "Untitled")
 
     const enableInput = ()=>{
         setTitle(initialData.title)

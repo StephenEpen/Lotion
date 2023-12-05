@@ -4,7 +4,7 @@ import { Cover } from "@/components/cover";
 import dynamic from "next/dynamic";
 import { useMemo } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Toolbar } from "@/components/ui/toolbar";
+import { Toolbar } from "@/components/toolbar";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { useMutation, useQuery } from "convex/react";

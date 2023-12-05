@@ -14,11 +14,10 @@ import { Skeleton } from "@/components/ui/skeleton"
 
 interface CoverImageProps{
     url?: string
-    preview?: boolean
 }
 
 export const Cover = ({
-    url, preview
+    url
 }: CoverImageProps) =>{
     const params = useParams()
     const coverImage = useCoverImage()
@@ -47,7 +46,7 @@ export const Cover = ({
                 className="object-cover"
                 />
             )}
-            {url && !preview && (
+            {url && (
                 <div className="opacity-0 group-hover:opacity-100
                 absolute bottom-5 right-5 flex items-center gap-x-2"
                 >

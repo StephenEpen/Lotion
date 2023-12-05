@@ -2,7 +2,7 @@
 
 import { Doc } from "@/convex/_generated/dataModel"
 import { IconPicker } from "./icon-picker"
-import { Button } from "./button"
+import { Button } from "./ui/button"
 import { ImageIcon, Smile, X } from "lucide-react"
 import { ElementRef, useRef, useState } from "react"
 import { useMutation } from "convex/react"
@@ -12,11 +12,10 @@ import { useCoverImage } from "@/hooks/use-cover-image"
 
 interface ToolbarProps{
     initialData: Doc<"documents">
-    preview?: boolean
 }
 
 export const Toolbar=({
-    initialData, preview
+    initialData
 }: ToolbarProps)=>{
     const inputRef = useRef<ElementRef<"textarea">>(null)
     const [isEditing, setIsEditing] = useState(false)
@@ -60,7 +59,7 @@ export const Toolbar=({
     }
 
     const onRandomIcon = ()=>{
-        const emojis = ["📖", "🔖", "📋", "📃", "🖋️", "🌈"];
+        const emojis = ["📖", "🔖", "📋", "📃", "🖋️", "📚"];
         const randomIndex = Math.floor(Math.random() * emojis.length);
         const randomEmoji = emojis[randomIndex];
 
@@ -74,16 +73,6 @@ export const Toolbar=({
         removeIcon({
             id: initialData._id
         })
-    }
-
-    const generateRandomImage = ()=>{
-        const image=[
-            '/image1.jpg',
-            '/image2.png'
-        ]
-
-        const randomIndex = Math.floor(Math.random() * image.length)
-        return image[randomIndex]
     }
 
     return(
