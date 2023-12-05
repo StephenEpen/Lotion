@@ -106,7 +106,7 @@ export const Toolbar=({
                 </div>
             )}
             <div className="opacity-0 group-hover:opacity-100 flex
-                flex items-center gap-x-1 py-4"
+                items-center gap-x-1 py-4"
             >
                 {!initialData.icon && (
                     <Button 

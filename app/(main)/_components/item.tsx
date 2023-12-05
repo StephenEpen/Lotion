@@ -1,18 +1,21 @@
 "use client"
 
 import { Skeleton } from "@/components/ui/skeleton"
-import { Id } from "@/convex/_generated/dataModel"
+import { Doc, Id } from "@/convex/_generated/dataModel"
 import { cn } from "@/lib/utils"
-import { ChevronDown, ChevronRight, LucideIcon, MoreHorizontal, Plus, Trash } from "lucide-react"
+import { ChevronDown, ChevronRight, Copy, LucideIcon, MoreHorizontal, Plus, Trash } from "lucide-react"
 import {useMutation} from "convex/react"
 import { api } from "@/convex/_generated/api"
 import { useRouter } from "next/navigation"
 import {toast} from "sonner"
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator } from "@/components/ui/dropdown-menu"
 import { useUser } from "@clerk/clerk-react"
+import { duplicate } from "@/convex/documents"
+// import { duplicate as duplicateMutation } from "@/convex/documents";
 
 interface ItemProps{
     id?: Id<"documents">,
+    docum?: Doc<"documents">
     documentIcon?: string
     active?: boolean
     expanded?: boolean
@@ -32,28 +35,14 @@ export const Item = ({
     const router = useRouter()
     const {user} = useUser()
     const archive = useMutation(api.documents.archive)
+    const duplicate = useMutation(api.documents.duplicate)
 
-    const onArchive=(
-        event: React.MouseEvent<HTMLDivElement, MouseEvent>
-    )=>{
-        event.stopPropagation()
-        if(!id) return
-        const promise = archive({id})
-            .then(()=>router.push("/documents"))
-
-        toast.promise(promise,{
-            loading: "Moving to trash...",
-            success: "Note moved to trash!",
-            error: "Failed to archive note."
-        })
-    }
-
-    const handleExpand = (
-        event: React.MouseEvent<HTMLDivElement, MouseEvent>
-    )=>{
-        event.stopPropagation()
-        onExpand?.()
-    }
+    // const handleExpand = (
+    //     event: React.MouseEvent<HTMLDivElement, MouseEvent>
+    // )=>{
+    //     event.stopPropagation()
+    //     onExpand?.()
+    // }
 
     const onCreate = (
         event: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -74,7 +63,38 @@ export const Item = ({
         })
     }
 
-    const ChevronIcon = expanded ? ChevronDown : ChevronRight
+    const onArchive=(
+        event: React.MouseEvent<HTMLDivElement, MouseEvent>
+    )=>{
+        event.stopPropagation()
+        if(!id) return
+        const promise = archive({id})
+            .then(()=>router.push("/documents"))
+
+        toast.promise(promise,{
+            loading: "Moving to trash...",
+            success: "Note moved to trash!",
+            error: "Failed to archive note."
+        })
+    }
+
+    const onDuplicate= (
+        event: React.MouseEvent<HTMLDivElement, MouseEvent>
+    )=>{
+        event.stopPropagation()
+        if(!id) return
+
+        const promise = duplicate({id})
+            .then(()=>router.push("/documents"))
+
+        toast.promise(promise,{
+            loading: "Duplicating...",
+            success: "Note has been duplicated!",
+            error: "Failed to duplicate note."
+        })
+    }
+
+    // const ChevronIcon = expanded ? ChevronDown : ChevronRight
 
     return(
         <div
@@ -135,11 +155,15 @@ export const Item = ({
                             className="w-60" align="start" 
                             side="right" forceMount
                         >
+                            <DropdownMenuItem onClick={onDuplicate}>
+                                <Copy className="h-4 w-4 mr-2"/>
+                                Duplicate
+                            </DropdownMenuItem>
+                            <DropdownMenuSeparator/>
                             <DropdownMenuItem onClick={onArchive}>
                                 <Trash className="h-4 w-4 mr-2"/>
                                 Delete
                             </DropdownMenuItem>
-                            {/* <DropdownMenuSeparator/> */}
                             {/* <div className="tezt-xs text-muted-foreground p-2">
                                 Last edited by: {user?.fullName}
                             </div> */}
