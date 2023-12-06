@@ -51,7 +51,7 @@ export const SearchCommand = ()=>{
                 <CommandEmpty>No results found.</CommandEmpty>
                 <CommandGroup heading="Documents">
                     {documents?.map((document)=>(
-                        <CommandItem key={document._id} value={`${document._id}-${document.title}`}
+                        <CommandItem key={document._id} className="cursor-pointer"
                             title={document.title} onSelect={() => onSelect(document._id)}
                         >
                             {document.icon?(

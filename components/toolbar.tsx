@@ -59,7 +59,7 @@ export const Toolbar=({
     }
 
     const onRandomIcon = ()=>{
-        const emojis = ["📖", "🔖", "📋", "📃", "🖋️", "📚"];
+        const emojis = ["📖", "🔖", "📋", "📃", "🖋️", "📝"];
         const randomIndex = Math.floor(Math.random() * emojis.length);
         const randomEmoji = emojis[randomIndex];
 
