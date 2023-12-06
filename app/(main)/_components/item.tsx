@@ -48,7 +48,7 @@ export const Item = ({
         if(!id) return
 
         const promise = duplicate({id})
-            .then(()=>router.push("/documents"))
+        .then((documentId)=>router.push(`/documents/${documentId}`))
 
         toast.promise(promise,{
             loading: "Duplicating...",
@@ -72,7 +72,7 @@ export const Item = ({
                     {documentIcon}                                  {/*   show documentIcon kalau dimasukin    */}
                 </div>
             ) : (
-                <Icon className="shrink-0 h-[18px] w-[18px] mr-2 text-muted-foreground" />      // show default icon if gaada 
+                <Icon className="shrink-0 h-[18px] w-[18px] mr-2 text-muted-foreground ml-1" />      // show default icon if gaada 
             )}
 
             <span className="truncate">

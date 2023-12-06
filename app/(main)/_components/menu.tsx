@@ -34,13 +34,13 @@ export const Menu = ({
 
     const onDuplicate = () =>{
         const promise = duplicate({id: documentId})
+        .then((documentId)=>router.push(`/documents/${documentId}`))
         
         toast.promise(promise,{
             loading: "Duplicating...",
             success: "Note has been duplicated!",
             error: "Failed to duplicate note."
         })
-        router.push("/documents")
     }
 
     return(
