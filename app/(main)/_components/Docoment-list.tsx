@@ -16,7 +16,6 @@ export const DocumentList = ()=>{
         router.push(`/documents/${documentId}`)
     }
 
-
     return(
         <>
             {documents?.map((document)=>(

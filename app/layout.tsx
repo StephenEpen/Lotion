@@ -10,8 +10,8 @@ import { EdgeStoreProvider } from "@/lib/edgestore"
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Notion',
-  description: 'Mau gila',
+  title: 'Lotion',
+  description: 'This is used for project',
   icons:{
     icon:[
       {
@@ -40,7 +40,7 @@ export default function RootLayout({
           <EdgeStoreProvider>
             <ThemeProvider attribute='class'
               defaultTheme='system' enableSystem
-              disableTransitionOnChange storageKey='notion-theme'
+              disableTransitionOnChange storageKey='lotion-theme'
             >
               <Toaster position="bottom-center"/>
               <ModalProvider/>

@@ -3,7 +3,6 @@
 import { Id } from "@/convex/_generated/dataModel"
 import {DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator} from "@/components/ui/dropdown-menu"
 import { useRouter } from "next/navigation"
-import { useUser } from "@clerk/clerk-react"
 import { useMutation } from "convex/react"
 import { api } from "@/convex/_generated/api"
 import { toast } from "sonner"
@@ -19,7 +18,6 @@ export const Menu = ({
     documentId
 }: MenuProps)=>{
     const router = useRouter()
-    const {user} = useUser()
     const archive = useMutation(api.documents.archive)
     const duplicate = useMutation(api.documents.duplicate)
     
@@ -63,10 +61,6 @@ export const Menu = ({
                     <Trash className="h-4 w-4 mr-2"/>
                     Delete
                 </DropdownMenuItem>
-                {/* <DropdownMenuSeparator/>
-                <div className="text-xs text-muted-foreground p-2">
-                    Last edited by: {user?.fullName}
-                </div> */}
             </DropdownMenuContent>
         </DropdownMenu>
     )

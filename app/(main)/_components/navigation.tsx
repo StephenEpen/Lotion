@@ -14,7 +14,6 @@ import { DocumentList } from "./Docoment-list"
 import {Popover, PopoverTrigger, PopoverContent} from "@/components/ui/popover"
 import { TrashBox } from "./trash-box"
 import { useSearch } from "@/hooks/use-search"
-import { useSettings } from "@/hooks/use-settings"
 import { Navbar } from "./navbar"
 
 export const Navigation = ()=>{
@@ -24,7 +23,6 @@ export const Navigation = ()=>{
     const isMobile = useMediaQuery("(max-width: 768px")
     const create = useMutation(api.documents.create)
 
-    const isResizingRef = useRef(false)
     const sidebarRef = useRef<ElementRef<"aside">>(null)
     const navbarRef = useRef<ElementRef<"div">>(null)
 
@@ -95,7 +93,7 @@ export const Navigation = ()=>{
                 </div>
                 <div>
                     <UserItem />                                                           {   /*  User Profile  */}    
-                    <Item onClick={search.onOpen} label="Search" icon={Search} />              
+                    <Item onClick={search.onOpen} label="Search" icon={Search} isSearch/>              
                     <Item onClick={handleCreate} label="New page" icon={PlusCircle} />
                 </div>
                 <div className="mt-2">
@@ -104,14 +102,12 @@ export const Navigation = ()=>{
                         <PopoverTrigger className="w-full mt-4">
                             <Item label="Trash" icon={Trash}/>
                         </PopoverTrigger>
-
                         <PopoverContent className="p-0 w-72" side={isMobile? "bottom":"right"}>
                             <TrashBox/>
                         </PopoverContent>
                     </Popover>
                 </div>
             </aside>
-
             
             <div ref={navbarRef} className={cn(
                 "absolute top-0 z-[99999] left-60 w-[calc(100%-240px)]",

@@ -13,7 +13,7 @@ interface ItemProps{
     id?: Id<"documents">
     documentIcon?: string
     active?: boolean
-    
+    isSearch?: boolean
     label: string
     onClick?: ()=> void
     icon: LucideIcon
@@ -22,7 +22,6 @@ interface ItemProps{
 export const Item = ({
     id, label, onClick, icon: Icon, active, documentIcon
 }: ItemProps)=>{
-    
     const router = useRouter()
     const archive = useMutation(api.documents.archive)
     const duplicate = useMutation(api.documents.duplicate)
@@ -33,7 +32,7 @@ export const Item = ({
         event.stopPropagation();
 
         if (!id) return;
-        const promise = archive({ id });                                // archive/delete function
+        const promise = archive({ id }).then(() => router.push("/documents"))                               // archive/delete function
     
         toast.promise(promise, {
           loading: "Moving to trash...",
@@ -80,7 +79,6 @@ export const Item = ({
                 {label}
             </span>
 
-
             {!!id && (
                 <div className="ml-auto flex items-center gap-x-2">
                     <DropdownMenu>
@@ -89,7 +87,6 @@ export const Item = ({
                                 <MoreHorizontal className="h-4 w-4 text-muted-foreground"/>
                             </div>
                         </DropdownMenuTrigger>
-
                         <DropdownMenuContent className="w-60" align="start" side="right" forceMount>
                             <DropdownMenuItem onClick={onDuplicate}>
                                 <Copy className="h-4 w-4 mr-2"/>
