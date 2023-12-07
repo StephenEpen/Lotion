@@ -34,8 +34,8 @@ const DocumentsPage = () => {
                 <div className="absolute top-0 right-0 px-3 py-2">
                     <ModeToggle/>
                 </div>
-                <Image src="/empty.png" height="300" width="300" alt="empty" className="dark:hidden" />
-                <Image src="/empty-dark.png" height="300" width="300" alt="empty" className="hidden dark:block" />
+                <Image src="/main-page.png" height="300" width="300" alt="empty" className="dark:hidden" />
+                <Image src="/main-page-dark.png" height="300" width="300" alt="empty" className="hidden dark:block" />
                 <h2 className="text-lf font-medium">
                     Welcome to {user?.firstName}&apos;s Notes
                 </h2>

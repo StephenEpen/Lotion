@@ -7,12 +7,12 @@ export const Heroes = () =>{
             md:w-[400px] mx-auto"
         >
             <Image
-                src="/reading.png"
+                src="/landing-page.png"
                 fill
                 className="object-contain dark:hidden"
                 alt="lpage"/>
             <Image 
-                src="/reading-dark.png"
+                src="/landing-page-dark.png"
                 fill
                 className="object-contain hidden dark:block"
                 alt="lpage"/>

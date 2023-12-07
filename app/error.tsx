@@ -12,7 +12,7 @@ const Error = () => {
             <Image src="/error.png" height="300" width="300"
                 alt="Error" className="dark:hidden"
             />
-            <Image src="/error-dark.jpg" height="300" width="300"
+            <Image src="/error-dark.png" height="300" width="300"
                 alt="Error" className="hidden dark:block rounded-lg"
             />
             <h2 className="text-xl font-medium">
