@@ -10,8 +10,11 @@ export const getSideBar = query({
             throw new Error("Not authenticated")
         }
 
+        const userId = identity.subject;
+
         const documents = await ctx.db
             .query("documents")
+            .withIndex("by_user", (q) => q.eq("userId", userId))
             .filter((q)=>q.eq(q.field("isArchived"), false))
             .order("desc")
             .collect()
